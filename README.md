@@ -17,9 +17,18 @@
 - Protect Your Routes (Home page can be accessed only after login)
 
 ## package installed
-- tailwind css
-- react-router-dom
-- react-icons
+- frontend package
+    - tailwind css
+    - react-router-dom
+    - react-icons
+- backend package
+    - express
+    - mongoose
+    - nodemon
+    - bcryptjs
+    - jsonwebtoken
+    - dotenv
+    - cookie-parser
 
 ## My Work ##
 - components 
@@ -33,3 +42,15 @@
     - header
     - login
     - register 
+
+
+- Backend
+    - first thing i will do is 'npm init'
+        - package.json will be created for my backend
+    
+    ### to work in
+    - To work in backend :
+        - Step 1
+            - create a server
+        - MongoDB
+        - Express 
