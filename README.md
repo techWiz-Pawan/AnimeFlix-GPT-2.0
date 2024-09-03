@@ -21,6 +21,9 @@
     - tailwind css
     - react-router-dom
     - react-icons
+    - axios
+    - react-hot-toast
+
 - backend package
     - express
     - mongoose
@@ -29,6 +32,7 @@
     - jsonwebtoken
     - dotenv
     - cookie-parser
+    - cors
 
 ## My Work ##
 - components 
