@@ -23,6 +23,8 @@
     - react-icons
     - axios
     - react-hot-toast
+    - react-redux
+    - @reduxjs/toolkit
 
 - backend package
     - express
