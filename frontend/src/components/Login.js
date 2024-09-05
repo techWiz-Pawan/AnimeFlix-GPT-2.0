@@ -5,8 +5,8 @@ import axios from "axios";
 import { API_END_POINT } from '../utils/constant';
 import toast from 'react-hot-toast';
 import {useNavigate} from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { setUser } from '../redux/userSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { setLoading, setUser } from '../redux/userSlice';
 
 const Login = () => {
 
@@ -18,12 +18,15 @@ const Login = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
+    const isLoading = useSelector(store => store.app.isLoading);
+
     const logInHandler = () => {
         setIsLogin(!isLogin)
     }
 
     const getInputData = async (e) => {
         e.preventDefault();
+        dispatch(setLoading(true));
 
         if (isLogin) {
             // login
@@ -43,9 +46,12 @@ const Login = () => {
             } catch (error) {
                 toast.error(error.response?.data?.message || 'Login failed');
                 console.log(error);
+            } finally{
+                dispatch(setLoading(false));
             }
         } else {
             // register
+            dispatch(setLoading(true));
             const user = { fullName, email, phone, password };
             try {
                 const res = await axios.post(`${API_END_POINT}/register`, user, {
@@ -61,6 +67,8 @@ const Login = () => {
             } catch (error) {
                 toast.error(error.response?.data?.message || 'Registration failed');
                 console.log(error);
+            } finally {
+                dispatch(setLoading(false));
             }
         }
 
@@ -120,21 +128,36 @@ const Login = () => {
                             className='block w-full mb-12 p-2 border border-gray-800 bg-gray-600 outline-none rounded'
                         />
 
-                        {
-                            !isLogin ? (
-                                <button
-                                    type='submit'
-                                    className='w-full py-2 bg-yellow-500 text-black font-bold rounded hover:bg-yellow-600'
-                                >Sign Up</button>
-                            ) : (
-                                <button
-                                    type='submit'
-                                    className='w-full py-2 bg-yellow-500 text-black font-bold rounded hover:bg-yellow-600'
-                                >
-                                    Sign In
-                                </button>
-                            )
-                        }
+{
+    !isLogin ? (
+        <button
+            type='submit'
+            className={`w-full py-2 bg-yellow-500 text-black font-bold rounded hover:bg-yellow-600 flex items-center justify-center ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
+            disabled={isLoading} // Disable button while loading
+        >
+            {isLoading ? (
+                <>
+                    <div className='spinner mr-2'></div> 
+                    Loading...
+                </>
+            ) : 'Sign Up'}
+        </button>
+    ) : (
+        <button
+            type='submit'
+            className={`w-full py-2 bg-yellow-500 text-black font-bold rounded hover:bg-yellow-600 flex items-center justify-center ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
+            disabled={isLoading} // Disable button while loading
+        >
+            {isLoading ? (
+                <>
+                    <div className='spinner mr-2'></div> 
+                    Loading...
+                </>
+            ) : 'Sign In'}
+        </button>
+    )
+}
+
 
                         <p className='text-center text-white mt-8 cursor-pointer'>
                             {isLogin

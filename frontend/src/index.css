@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -43,3 +44,26 @@ code {
 .flip-card-back {
   transform: rotateY(180deg);
 }
+
+
+/* // loading animation css */
+
+.spinner {
+  border: 2px solid rgba(255, 255, 255, 0.6); /* Light border */
+  border-top: 2px solid black; /* Darker top border */
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+      transform: rotate(0deg);
+  }
+  100% {
+      transform: rotate(360deg);
+  }
+}
+
+
