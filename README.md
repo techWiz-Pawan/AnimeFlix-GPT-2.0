@@ -8,6 +8,9 @@
 - Redux Toolkit to manage state
 - How to setup Tailwind css
 - TMDB for API
+    - now playing movie
+    - popular movies
+    
 
 ## BACKEND [NodeJS, ExpressJS, MongoDB] :
 - How to Connect your backend to database
